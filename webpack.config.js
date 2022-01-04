@@ -13,13 +13,13 @@ const isDevelopment = process.env.NODE_ENV != 'production';
 module.exports = {
     mode: isDevelopment ? 'development' : 'production', //Dessa forma esta especificando que esta no modo dev ou produção
     devtool: isDevelopment ? 'eval-source-map' : 'source-map', //Para visualizar o codigo do app para saber sobre os erros!
-    entry: path.resolve(__dirname, 'src', 'index.jsx'), //Arquivo de entrada
+    entry: path.resolve(__dirname, 'src', 'index.tsx'), //Arquivo de entrada
     output: {
         path: path.resolve(__dirname, 'dist'), //Arquivo de saída
         filename: 'bundle.js',
     },
     resolve: { //Informando tipos de arquivos que vão ser lidos
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     devServer: {
         static: {
@@ -36,7 +36,7 @@ module.exports = {
     module: {//Definir propriedades de regras de como vamos receber os arquivos
         rules:[
             {
-                test: /\.jsx$/, //Regex para pegar também aceitar arquivos JSX
+                test: /\.(j|t)sx$/, //Regex para pegar também aceitar arquivos JSX ou typescript também
                 exclude: /node_modules/, //Aqui para ele ignorar os arquivos node_modules
                 use: {
                     loader: 'babel-loader',
