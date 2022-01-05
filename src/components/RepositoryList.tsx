@@ -18,11 +18,16 @@ import '../styles/repositories.scss'
 }
  */
 
+interface Repository {
+    name: string;
+    description: string;
+    html_url: string
+}
 
 
 export function RepositoryList(){
-    //Listagem do repositórios
-    const [ repositories, setRepositories ] = useState([])
+    //Listagem do repositórios. Ainda tem type no useState
+    const [ repositories, setRepositories ] = useState<Repository[]>([]);
 
     //Fazendo uma chamada na api do gitHub com os repositories
     useEffect(()=>{
